@@ -45,7 +45,7 @@ include "dbConfig.php";
     <div class="container-fluid position-relative nav-bar" style="padding-top: 1pc;padding-bottom: 15px;">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.php" class="navbar-brand">
                     <h1 class="m-0 text-primary"><span class="text-dark">Promo</span>Tourism</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -115,6 +115,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   $CompDe = $_POST['description'];
   $Document = $_POST['document'];
   $Status = "Pending";
+  $Position = $_POST['position'];
 
   $checkEmpIDSql = "SELECT * FROM userdb WHERE Username = '$Username'";
   $checkEmailSql = "SELECT * FROM userdb WHERE Email = '$Email'";
@@ -126,11 +127,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     echo "<script>alert('Email already exists!')</script>";
     return;
   } else {
-      $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`)
-        VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$Document','$Status')";
+      $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`,`Position`)
+        VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$Document','$Status','$Position')";
     }
-
-  
 
     if ($con->query($insertSql) == true) {
       echo "<script>alert('User successfully registered!')</script>";
