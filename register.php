@@ -61,6 +61,13 @@ include "dbConfig.php";
             <form method="POST" id="registerForm" action="register.php">
                 <H1>Register Account</H1>
                 <div style="padding-top: 30px;"></div>
+                <div class="form-group form-inline">
+                    <label for="position" class="col-lg-2 text-right" style="justify-content: flex-end;">User Type:</label>
+                    <input type="Radio" id="S1" name="position" value="User">
+                    <label for="S1" class="pl-2" style="padding-right:20px">User</label>
+                    <input type="Radio" id="S2" name="position" value="Marchant">
+                    <label for="S2" class="pl-2">Marchant</label>
+                  </div>
                   <div class="form-group form-inline">
                     <label for="username" class="col-lg-2 text-right" style="justify-content: flex-end;">Username:</label>
                     <input type="text" class="form-control sizing col-lg-10" id="username" name="username" placeholder="Enter username" required>
@@ -100,7 +107,6 @@ include "dbConfig.php";
 
 
 <?php
-global $db;
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   $Username= $_POST['username'];
   $Password = $_POST['password'];
@@ -108,6 +114,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   $Email = $_POST['email'];
   $CompDe = $_POST['description'];
   $Document = $_POST['document'];
+  $Status = "Pending";
 
   $checkEmpIDSql = "SELECT * FROM userdb WHERE Username = '$Username'";
   $checkEmailSql = "SELECT * FROM userdb WHERE Email = '$Email'";
@@ -119,15 +126,15 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     echo "<script>alert('Email already exists!')</script>";
     return;
   } else {
-      $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`)
-        VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$Document')";
+      $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`)
+        VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$Document','$Status')";
     }
 
   
 
     if ($con->query($insertSql) == true) {
       echo "<script>alert('User successfully registered!')</script>";
-      echo "<script>setTimeout(\"location.href = 'login.php';\",1500);</script>";
+      echo "<script>setTimeout(\"location.href = 'login.php';\",1000);</script>";
     } else {
       echo "<script>alert('Error registering user: " . $con->error . "')</script>";
     }

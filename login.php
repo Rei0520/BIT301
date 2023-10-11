@@ -10,8 +10,6 @@ include "dbConfig.php";
     <meta charset="utf-8">
     <title>PromoTourism</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -44,7 +42,7 @@ include "dbConfig.php";
     <div class="container-fluid position-relative nav-bar" style="padding-top: 1pc;padding-bottom: 15px;">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.php" class="navbar-brand">
                     <h1 class="m-0 text-primary"><span class="text-dark">Promo</span>Tourism</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -95,14 +93,18 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['email'] = $user['Email'];
             $_SESSION['description'] = $user['CompDe'];
             $_SESSION['document'] = $user['Document'];
-            if ($_SESSION['username'] == "Admin") {
+            $_SESSION['position'] = $user['Position'];
+
+            if ($_SESSION['position'] == "Admin") {
                 echo'<script>alert("Welcome back admin!")</script>';
-                echo "<script>setTimeout(\"location.href = 'index.html';\",1500);</script>";
+                echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";
                 
+            }  else if($_SESSION['position']=="Marchant"){
+                echo"<script>alert('Welcome back $Username!')</script>";
+                echo "<script>setTimeout(\"location.href = 'manageproduct.html';\",1000);</script>";
             } else {
                 echo"<script>alert('Welcome back $Username!')</script>";
-                echo "<script>setTimeout(\"location.href = 'index.html';\",1500);</script>";
-                
+                echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";
             }
         } else {
             echo "<script>alert('Wrong password for this Employee ID!')</script>";
