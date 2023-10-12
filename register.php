@@ -125,7 +125,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   $ContactNum = $_POST['contactNum'];
   $Email = $_POST['email'];
   $CompDe = $_POST['description'];
-  //$Document = $_POST['document'];
   $Status = "Pending";
   $Position = $_POST['position'];
 

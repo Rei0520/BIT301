@@ -21,7 +21,7 @@ $Username = '';
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -67,7 +67,7 @@ $Username = '';
                                 echo ("<a href='login.php' class='nav-item nav-link'>Login/Sign Up</a>"); 
                             }
                             else{
-                                echo ("<a href='logout.php' class='nav-item nav-link'>".$_SESSION['username']."</a>");
+                                echo ("<a href='logout.php' class='nav-item nav-link'><i class='fa-solid fa-user'></i>".$_SESSION['username']."</a>");
                             }
                         ?>
                     </div>
