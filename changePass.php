@@ -29,6 +29,13 @@ $username = $_SESSION['username'];
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+    body {
+      background-image: url('img/tourismBackground.jpg');
+      background-repeat: no-repeat;
+    }
+    </style> 
 </head>
 
 <body>
