@@ -1,5 +1,8 @@
 <?php
+session_start();
 include 'database.php';
+
+$username = $_SESSION['username'];
 
 if (isset($_GET['id'])) {  
     $id = $_GET['id'];  
@@ -13,7 +16,7 @@ if (isset($_GET['id'])) {
 }  
 
 
-$query = "select * from new_product";
+$query = "SELECT * from new_product WHERE username = '$username'";
 $result = mysqli_query($conn, $query)
 ?>
 
@@ -22,7 +25,7 @@ $result = mysqli_query($conn, $query)
 
 <head>
     <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+    <title>Manage Product</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -39,7 +42,7 @@ $result = mysqli_query($conn, $query)
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -55,58 +58,23 @@ $result = mysqli_query($conn, $query)
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
-                        <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-primary pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-fluid position-relative nav-bar" style="padding-top: 1pc;padding-bottom: 15px;">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">TRAVEL</span>ER</h1>
+                    <h1 class="m-0 text-primary"><span class="text-dark">Promo</span>Tourism</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="index.php" class="nav-item nav-link active">Home</a>
+                        <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="package.html" class="nav-item nav-link active">Manage Product</a>
+                        <a href="package.html" class="nav-item nav-link">Tour Packages</a>
+                        <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -117,7 +85,17 @@ $result = mysqli_query($conn, $query)
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    -->
+                        <?php
+                            $Username = $_SESSION['username'];
+
+                            if($Username == null){
+                                echo ("<a href='login.php' class='nav-item nav-link'>Login/Sign Up</a>"); 
+                            }
+                            else{
+                                echo ("<a href='logout.php' class='nav-item nav-link'><i class='fa-solid fa-user'></i>".$_SESSION['username']."</a>");
+                            }
+                        ?>
                     </div>
                 </div>
             </nav>
@@ -130,19 +108,17 @@ $result = mysqli_query($conn, $query)
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Packages</h3>
+                <h3 class="display-4 text-white text-uppercase">Product</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Packages</p>
+                    <p class="m-0 text-uppercase">Manage Product</p>
                 </div>
             </div>
         </div>
     </div>
     <!-- Header End -->
 
-
-    <!-- modal -->
     <div class="container">
         <div class="row offset-10 mt-2">
             <button type="button" class="btn btn-primary" onclick = "window.location.href='addnewproduct.php'">Add New Product</button>
@@ -181,7 +157,7 @@ $result = mysqli_query($conn, $query)
                 <td><?php echo $rows['quantity']; ?></td>
                 <td><img class="w-50" src="uploads_img/<?=$rows['product_pic']?>"></td>
                 <td><a class="delete btn btn-primary" href="editmanage.php?id=<?php echo $rows['id']; ?>">Edit</a></td>
-                <td><a class="delete btn btn-danger" href="manageproduct.php?id=<?php echo $rows['id']; ?>">Delete</a></td>
+                <td><a class="delete btn btn-danger"  onclick="return confirm('Are you sure you want to delete this?')" href="manageproduct.php?id=<?php echo $rows['id'];?>">Delete</a></td>
                 </tr>
 	<?php
 }
