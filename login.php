@@ -19,7 +19,7 @@ include "database.php";
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -94,14 +94,27 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['description'] = $user['CompDe'];
             $_SESSION['document'] = $user['Document'];
             $_SESSION['position'] = $user['Position'];
+            $_SESSION['status'] = $user['Status'];
 
             if ($_SESSION['position'] == "Admin") {
                 echo'<script>alert("Welcome back admin!")</script>';
                 echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";
                 
             }  else if($_SESSION['position']=="Marchant"){
-                echo"<script>alert('Welcome back $Username!')</script>";
-                echo "<script>setTimeout(\"location.href = 'manageproduct.php';\",1000);</script>";
+                
+                if($_SESSION['status'] == "Pending"){
+                    echo "<script>alert('Your Account have not been approved!')</script>";
+                    echo "<script>setTimeout(\"location.href = 'login.php';\",500);</script>";
+                }else if ($_SESSION['password'] == "123"){
+                    echo"<script>alert('Welcome back $Username!')</script>";
+                    echo"<script>alert('Please change your password!')</script>";
+                    echo "<script>setTimeout(\"location.href = 'changePass.php';\",1000);</script>";
+                }else{
+                    echo"<script>alert('Welcome back $Username!')</script>";
+                    echo "<script>setTimeout(\"location.href = 'manageproduct.php';\",1000);</script>";
+                }
+                
+
             } else {
                 echo"<script>alert('Welcome back $Username!')</script>";
                 echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";

@@ -22,7 +22,7 @@ include "database.php";
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -64,9 +64,9 @@ include "database.php";
                 <div class="form-group form-inline">
                     <label for="position" class="col-lg-2 text-right" style="justify-content: flex-end;">User
                         Type:</label>
-                    <input type="Radio" id="S1" name="position" value="User">
+                    <input type="Radio" id="S1" name="position" value="User" checked>
                     <label for="S1" class="pl-2" style="padding-right:20px">User</label>
-                    <input type="Radio" id="S2" name="position" value="Marchant">
+                    <input type="Radio" id="S2" name="position" value="Marchant" >
                     <label for="S2" class="pl-2">Marchant</label>
                 </div>
                 <div class="form-group form-inline">
@@ -125,7 +125,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   $ContactNum = $_POST['contactNum'];
   $Email = $_POST['email'];
   $CompDe = $_POST['description'];
-  //$Document = $_POST['document'];
   $Status = "Pending";
   $Position = $_POST['position'];
 
@@ -164,23 +163,27 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
       header("Location: register.php?error=$em");
   }
 
-  if ($con->query($checkEmpIDSql)->num_rows > 0) {
+  if ($conn->query($checkEmpIDSql)->num_rows > 0) {
     echo "<script>alert('Employee already exists!')</script>";
     return;
-  } else if ($con->query($checkEmailSql)->num_rows > 0) {
+  } else if ($conn->query($checkEmailSql)->num_rows > 0) {
     echo "<script>alert('Email already exists!')</script>";
     return;
-  } else {
-    echo"<script>alert('$new_img_name!')</script>";
+  } else if ($_SESSION['position'] == "Marchant"){
+    $Password = "123";
+    $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`,`Position`)
+        VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$new_img_name','$Status','$Position')";
+    echo "<script>alert('Password set to 123!')</script>";
+    }else {
       $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`,`Position`)
         VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$new_img_name','$Status','$Position')";
     }
 
-    if ($con->query($insertSql) == true) {
+    if ($conn->query($insertSql) == true) {
       echo "<script>alert('User successfully registered!')</script>";
       echo "<script>setTimeout(\"location.href = 'login.php';\",1000);</script>";
     } else {
-      echo "<script>alert('Error registering user: " . $con-> error . "')</script>";
+      echo "<script>alert('Error registering user: " . $conn->error . "')</script>";
     }
 }
 ?>
