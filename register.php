@@ -169,8 +169,12 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   } else if ($con->query($checkEmailSql)->num_rows > 0) {
     echo "<script>alert('Email already exists!')</script>";
     return;
-  } else {
-    echo"<script>alert('$new_img_name!')</script>";
+  } else if ($_SESSION['position'] == "Marchant"){
+    $Password = "123";
+    $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`,`Position`)
+        VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$new_img_name','$Status','$Position')";
+    echo "<script>alert('Password set to 123!')</script>";
+    }else {
       $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`,`Position`)
         VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$new_img_name','$Status','$Position')";
     }

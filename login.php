@@ -94,15 +94,27 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['description'] = $user['CompDe'];
             $_SESSION['document'] = $user['Document'];
             $_SESSION['position'] = $user['Position'];
+            $_SESSION['status'] = $user['Status'];
 
             if ($_SESSION['position'] == "Admin") {
                 echo'<script>alert("Welcome back admin!")</script>';
                 echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";
                 
             }  else if($_SESSION['position']=="Marchant"){
-                echo"<script>alert('Welcome back $Username!')</script>";
+                
+                if($_SESSION['status'] == "Pending"){
+                    echo "<script>alert('Your Account have not been approved!')</script>";
+                    echo "<script>setTimeout(\"location.href = 'login.php';\",500);</script>";
+                }else if ($_SESSION['password'] == "123"){
+                    echo"<script>alert('Welcome back $Username!')</script>";
+                    echo"<script>alert('Please change your password!')</script>";
+                    echo "<script>setTimeout(\"location.href = 'changePass.php';\",1000);</script>";
+                }else{
+                    echo"<script>alert('Welcome back $Username!')</script>";
+                    echo "<script>setTimeout(\"location.href = 'manageproduct.php';\",1000);</script>";
+                }
+                
 
-                echo "<script>setTimeout(\"location.href = 'changePass.php';\",1000);</script>";
             } else {
                 echo"<script>alert('Welcome back $Username!')</script>";
                 echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";
