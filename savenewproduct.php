@@ -8,6 +8,7 @@
             $product_name = $_POST['product_name'];
             $description = $_POST['description'];
             $quantity = $_POST['quantity'];
+            $price = $_POST['price'];
             $img_name = $_FILES['product_pic']['name'];
             $img_size = $_FILES['product_pic']['size'];
             $tmp_name = $_FILES['product_pic']['tmp_name'];
@@ -29,7 +30,7 @@
                         $img_upload_path = 'uploads_img/' . $new_img_name;
                         move_uploaded_file($tmp_name, $img_upload_path);
     
-                        $sql = "INSERT INTO new_product (product_name, description, quantity, product_pic,username) VALUES ('$product_name', '$description', $quantity, '$new_img_name','$username')";
+                        $sql = "INSERT INTO new_product (product_name, description, quantity, product_pic, price,username) VALUES ('$product_name', '$description', $quantity, '$new_img_name',$price,'$username')";
                         mysqli_query($conn, $sql);
 
                         header("Location: manageproduct.php");

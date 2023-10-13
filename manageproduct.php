@@ -138,9 +138,10 @@ $result = mysqli_query($conn, $query)
                     <tr>
                         <th width="5%">No.</th>
                         <th width="15%">Product Name</th>
-                        <th width="30%">Description</th>
+                        <th width="25%">Description</th>
                         <th width="10%">Quantity</th>
-                        <th width="30%">Product Picture</th>
+                        <th width="10%">Price</th>
+                        <th width="25%">Product Picture</th>
                         <th width="5%">Edit</th>
                         <th width="5%">Delete</th>
                     </tr>
@@ -155,6 +156,7 @@ $result = mysqli_query($conn, $query)
                 <td><?php echo $rows['product_name']; ?></td>
                 <td><?php echo $rows['description']; ?></td>
                 <td><?php echo $rows['quantity']; ?></td>
+                <td><?php echo $rows['price']; ?></td>
                 <td><img class="w-50" src="uploads_img/<?=$rows['product_pic']?>"></td>
                 <td><a class="delete btn btn-primary" href="editmanage.php?id=<?php echo $rows['id']; ?>">Edit</a></td>
                 <td><a class="delete btn btn-danger"  onclick="return confirm('Are you sure you want to delete this?')" href="manageproduct.php?id=<?php echo $rows['id'];?>">Delete</a></td>

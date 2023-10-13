@@ -125,6 +125,7 @@
         $product_name=$row['product_name'];
         $description=$row['description'];
         $quantity=$row['quantity'];
+        $price=$row['price'];
         $product_pic=$row['product_pic'];
         ?>
         <form action="editproduct.php" method="post" enctype="multipart/form-data">
@@ -140,6 +141,10 @@
             <div class="form-group">
                 <label for="quantity" class="col-form-label">Quantity:</label>
                 <input class="form-control" type="number" id="update_quantity" name="update_quantity" value="<?php echo $quantity; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity" class="col-form-label">Price:</label>
+                <input class="form-control" type="number" id="update_price" name="update_price" value="<?php echo $price; ?>" required>
             </div>
             <div class="form-group">
                 <label for="product_pic" class="col-form-label">Product Image:</label>

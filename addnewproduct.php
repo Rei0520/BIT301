@@ -124,6 +124,10 @@
                 <input class="form-control" type="number" id="quantity" name="quantity" required>
             </div>
             <div class="form-group">
+                <label for="quantity" class="col-form-label">Price:</label>
+                <input class="form-control" type="number" id="price" name="price" required>
+            </div>
+            <div class="form-group">
                 <label for="product_pic" class="col-form-label">Product Image:</label>
                 <input type="file" class="form-control" id="product_pic" name="product_pic" required>
             </div>
