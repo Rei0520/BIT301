@@ -89,7 +89,7 @@ include "dbConfig.php";
                 </div>
                 <div class="form-group form-inline">
                     <label for="email" class="col-lg-2 text-right" style="justify-content: flex-end;">Email:</label>
-                    <input type="text" class="form-control sizing col-lg-10" id="email" name="email"
+                    <input type="email" class="form-control sizing col-lg-10" id="email" name="email"
                         placeholder="Enter email" required>
                 </div>
                 <div class="form-group form-inline">
