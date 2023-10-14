@@ -59,10 +59,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.php" class="nav-item nav-link active">Home</a>
+                        <a href="index.php" class="nav-item nav-link">Home</a>
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="package.html" class="nav-item nav-link">Tour Packages</a>
+                        <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
+                        <a href="manageproduct.php" class="nav-item nav-link active">Product</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -97,7 +97,7 @@
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Manage Product</h3>
+                <h3 class="display-4 text-white text-uppercase">Add New Product</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
@@ -117,7 +117,7 @@
             </div>
             <div class="form-group">
                 <label for="description" class="col-form-label">Description:</label>
-                <textarea class="form-control" id="description" name="description"></textarea>
+                <textarea class="form-control" id="description" name="description" maxlength="999"></textarea>
             </div>
             <div class="form-group">
                 <label for="quantity" class="col-form-label">Quantity:</label>
@@ -133,7 +133,7 @@
             </div>
             <div class="offset-10">
                 <button type="button" class="btn btn-secondary" onclick="history.go(-1);">Back</button>
-                <input class="btn btn-success" type="submit" value="Submit">
+                <input class="btn btn-success" type="submit" value="Save">
             </div>
         </form>
     </div>
