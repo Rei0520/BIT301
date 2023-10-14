@@ -107,7 +107,7 @@ include "dbConfig.php";
                 <container class="form-inline">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-10" style="padding-left: 0px;">
-                        <button type="submit" class="btn btn-primary" name="register">Register Employee</button>
+                        <button type="submit" class="btn btn-primary" name="register">Register Account</button>
                     </div>
                 </container>
             </form>
