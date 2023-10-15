@@ -128,7 +128,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   $Status = "Pending";
   $Position = $_POST['position'];
 
-  
+
   $img_name = $_FILES['document']['name'];
   $img_size = $_FILES['document']['size'];
   $tmp_name = $_FILES['document']['tmp_name'];
@@ -141,7 +141,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   if ($error === 0) {
     if ($img_size > 125000) {
         $em = "Sorry, your file is too large.";
-    
+
     } else {
         $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
         $img_ex_lc = strtolower($img_ex);
