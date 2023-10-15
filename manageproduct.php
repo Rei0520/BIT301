@@ -54,7 +54,6 @@ $result = mysqli_query($conn, $query)
     <!-- DataTable -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-
 </head>
 
 <body>
@@ -70,10 +69,10 @@ $result = mysqli_query($conn, $query)
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.php" class="nav-item nav-link active">Home</a>
+                        <a href="index.php" class="nav-item nav-link ">Home</a>
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="package.html" class="nav-item nav-link">Tour Packages</a>
+                        <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
+                        <a href="manageproduct.php" class="nav-item nav-link active">Product</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -154,7 +153,7 @@ $result = mysqli_query($conn, $query)
     ?>
                 <tr> <td><?php echo $count; ?></td>
                 <td><?php echo $rows['product_name']; ?></td>
-                <td><?php echo $rows['description']; ?></td>
+                <td><?php echo substr($rows['description'],0, 40); ?></td>
                 <td><?php echo $rows['quantity']; ?></td>
                 <td><?php echo $rows['price']; ?></td>
                 <td><img class="w-50" src="uploads_img/<?=$rows['product_pic']?>"></td>

@@ -30,10 +30,13 @@
                         $img_upload_path = 'uploads_img/' . $new_img_name;
                         move_uploaded_file($tmp_name, $img_upload_path);
     
-                        $sql = "INSERT INTO new_product (product_name, description, quantity, product_pic, price,username) VALUES ('$product_name', '$description', $quantity, '$new_img_name',$price,'$username')";
-                        mysqli_query($conn, $sql);
-
-                        header("Location: manageproduct.php");
+                        $sql = "INSERT INTO new_product (product_name, description, quantity, product_pic, price,username) VALUES ('$product_name', '$description', '$quantity', '$new_img_name','$price','$username')";
+                        if ($conn->query($sql) == true) {
+                            echo "<script>alert('New Product successful saved!')</script>";
+                            echo "<script>setTimeout(\"location.href = 'manageproduct.php';\",1000);</script>";
+                          } else {
+                            echo "<script>alert('Error add new product: " . $conn->error . "')</script>";
+                          }
                     } else {
                         $em = "You can't upload files of this type";
                         header("Location: addnewproduct.php?error=$em");
