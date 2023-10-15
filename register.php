@@ -152,10 +152,10 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
           $img_upload_path = 'verification_form/' . $new_img_name;
 
           move_uploaded_file($tmp_name, $img_upload_path);
-   
+
         } else {
           $em = "You can't upload files of this type";
-  
+
         }
     }
   } else {
