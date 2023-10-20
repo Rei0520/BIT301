@@ -130,16 +130,15 @@
             <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th width="20%">User ID</th>
-                        <th width="20%">User Name</th>
-                        <th width="20%">Contact No.</th>
-                        <th width="20%">Email</th>
-                        <th width="20%">Status</th>
-                        <th width="20%">CompDe</th>
-                        <th width="20%">Document</th>        
-                        <th width="20%">Status</th>
-                        <th width="20%"> </th>
-                        <th width="20%"> </th>
+                        <th width="10%">User ID</th>
+                        <th width="10%">User Name</th>
+                        <th width="10%">Contact No.</th>
+                        <th width="10%">Email</th>
+                        <th width="10%">CompDe</th>
+                        <th width="30%">Document</th>        
+                        <th width="10%">Status</th>
+                        <th width="5%"> </th>
+                        <th width="5%"> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,9 +152,8 @@
                 <td><?php echo $rows['Username']; ?></td>
                 <td><?php echo $rows['ContactNum']; ?></td>
                 <td><?php echo $rows['Email']; ?></td>
-                <td><?php echo $rows['Status']; ?></td>
                 <td><?php echo $rows['CompDe']; ?></td>
-                <td><?php echo $rows['Document']; ?></td>
+                <td><img class="w-100" src="verification_form/<?=$rows['Document']?>"></td>
                 <td><?php echo $rows['Status']; ?></td>
 
                 <td><a class="delete btn btn-primary" href="merchantapproved.php?id=<?php echo $rows['UserID']; ?>">Approve</a></td>
