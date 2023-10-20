@@ -146,13 +146,14 @@ if(mysqli_num_rows($result1) >0);
             <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th width="20%">User ID</th>
-                        <th width="20%">User Name</th>
-                        <th width="20%">Contact No.</th>
-                        <th width="20%">Email</th>
-                        <th width="20%">CompDe</th>
-                        <th width="20%">Document</th>        
-                        <th width="20%">Status</th>
+                    <th width="10%">User ID</th>
+                        <th width="10%">User Name</th>
+                        <th width="10%">Contact No.</th>
+                        <th width="10%">Email</th>
+                        <th width="10%">CompDe</th>
+                        <th width="30%">Document</th>        
+                        <th width="10%">Status</th>
+ 
                     </tr>
                 </thead>
                 <tbody>
