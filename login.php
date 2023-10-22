@@ -98,7 +98,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
             if ($_SESSION['position'] == "Admin") {
                 echo'<script>alert("Welcome back admin!")</script>';
-                echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";
+                echo "<script>setTimeout(\"location.href = 'accountmanagement.php';\",1000);</script>";
                 
             }  else if($_SESSION['position']=="Marchant"){
                 

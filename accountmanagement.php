@@ -151,6 +151,8 @@ $result = mysqli_query($conn, $query)
                 </thead>
                 <tbody>
                 <?php 
+                   
+                
                 $count = 0;
                 while ($rows = mysqli_fetch_assoc($result)) {
                     $count++;

@@ -11,13 +11,13 @@ if(!isset($_GET['id'])){
 $userid = $_GET['id'];
 $sql = "UPDATE userdb SET Status='Approve' WHERE UserID=$userid";
 $result = mysqli_query($conn,$sql);
-if ($result) {
-    echo "Update merchant status to 'Approve' successful.";
-} else {
-    echo "Error updating record: " . mysqli_error($conn);
-}
 
-mysqli_close($connection);
+$sql1 = "SELECT * FROM userdb WHERE UserID=$userid";
+$result1 = mysqli_query($conn,$sql1);
+if(mysqli_num_rows($result1) >0);
+
+
+
 ?>
 
 
@@ -26,7 +26,7 @@ mysqli_close($connection);
 
 <head>
     <meta charset="utf-8">
-    <title>Review Merchant Application Approval</title>
+    <title>Updated Approve Successfully</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -113,7 +113,7 @@ mysqli_close($connection);
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Review Merchant Application Approval</p>
+                    <p class="m-0 text-uppercase">Updated Merchant Status to Approve Successfully</p>
                 </div>
             </div>
         </div>
@@ -131,16 +131,50 @@ mysqli_close($connection);
     <div class="container-fluid py-5">
         <div class="container pb-3">
             <div class="text-center mb-3 pb-3">
+            <?php 
+                $count = 0;
+                while ($rows = mysqli_fetch_assoc($result1)) {
+                    $count++;
+                    $email = $rows['Email'];
+    ?>
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Account Management</h6>
-                <h1>Approved successfully</h1>
+                <h3>Updated Merchant Status to 'Approve' Successfully</h3>
+                <h5>An email is sent to <?php echo $email; ?> letting them know their account is approved.<h5>
+                
             </div>
-            <div>
 
-
-                <a class="delete btn btn-primary" href="editmanage.php?editmanage.php?id=2">Approve</a>
-                <a class="delete btn btn-danger" href="editmanage.php?id=1">Reject</a>
-            </div> 
-
+            <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <<th width="10%">User ID</th>
+                        <th width="10%">User Name</th>
+                        <th width="10%">Contact No.</th>
+                        <th width="10%">Email</th>
+                        <th width="10%">CompDe</th>
+                        <th width="30%">Document</th>        
+                        <th width="10%">Status</th>
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                
+                <tr>
+                <td><?php echo $rows['UserID']; ?></td>
+                <td><?php echo $rows['Username']; ?></td>
+                <td><?php echo $rows['ContactNum']; ?></td>
+                <td><?php echo $rows['Email']; ?></td>
+                <td><?php echo $rows['CompDe']; ?></td>
+                <td><img class="w-100" src="verification_form/<?=$rows['Document']?>"></td>
+                <td><?php echo $rows['Status']; ?></td>
+                </tr>
+	<?php
+}
+?>
+                </tbody>
+            </table>
+            <a class="delete btn btn-primary" href="index.php?id=<?php echo $rows['UserID']; ?>">Go Back to Home</a>
+            <a class="delete btn btn-success" href="accountmanagement.php?id=<?php echo $rows['UserID']; ?>">Go Back to the List</a>
+    
         </div>
     </div>
     <!-- Packages End -->
