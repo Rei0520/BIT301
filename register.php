@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "database.php";
+include 'database.php';
 ?>
 
 
@@ -66,7 +66,7 @@ include "database.php";
                         Type:</label>
                     <input type="Radio" id="S1" name="position" value="User" checked>
                     <label for="S1" class="pl-2" style="padding-right:20px">User</label>
-                    <input type="Radio" id="S2" name="position" value="Marchant" >
+                    <input type="Radio" id="S2" name="position" value="Marchant">
                     <label for="S2" class="pl-2">Marchant</label>
                 </div>
                 <div class="form-group form-inline">
@@ -89,7 +89,7 @@ include "database.php";
                 </div>
                 <div class="form-group form-inline">
                     <label for="email" class="col-lg-2 text-right" style="justify-content: flex-end;">Email:</label>
-                    <input type="text" class="form-control sizing col-lg-10" id="email" name="email"
+                    <input type="email" class="form-control sizing col-lg-10" id="email" name="email"
                         placeholder="Enter email" required>
                 </div>
                 <div class="form-group form-inline">
@@ -107,7 +107,7 @@ include "database.php";
                 <container class="form-inline">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-10" style="padding-left: 0px;">
-                        <button type="submit" class="btn btn-primary" name="register">Register Employee</button>
+                        <button type="submit" class="btn btn-primary" name="register">Register Account</button>
                     </div>
                 </container>
             </form>
@@ -128,7 +128,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   $Status = "Pending";
   $Position = $_POST['position'];
 
-  
+
   $img_name = $_FILES['document']['name'];
   $img_size = $_FILES['document']['size'];
   $tmp_name = $_FILES['document']['tmp_name'];
@@ -141,7 +141,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   if ($error === 0) {
     if ($img_size > 125000) {
         $em = "Sorry, your file is too large.";
-    
+
     } else {
         $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
         $img_ex_lc = strtolower($img_ex);
@@ -152,10 +152,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
           $img_upload_path = 'verification_form/' . $new_img_name;
 
           move_uploaded_file($tmp_name, $img_upload_path);
-   
+
         } else {
           $em = "You can't upload files of this type";
-  
         }
     }
   } else {
@@ -163,13 +162,13 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
       header("Location: register.php?error=$em");
   }
 
-  if ($conn->query($checkEmpIDSql)->num_rows > 0) {
+  if ($con->query($checkEmpIDSql)->num_rows > 0) {
     echo "<script>alert('Employee already exists!')</script>";
     return;
-  } else if ($conn->query($checkEmailSql)->num_rows > 0) {
+  } else if ($con->query($checkEmailSql)->num_rows > 0) {
     echo "<script>alert('Email already exists!')</script>";
     return;
-  } else if ($_SESSION['position'] == "Marchant"){
+  } else if ($Position == "Marchant"){
     $Password = "123";
     $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`,`Position`)
         VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$new_img_name','$Status','$Position')";
@@ -179,11 +178,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$new_img_name','$Status','$Position')";
     }
 
-    if ($conn->query($insertSql) == true) {
+    if ($con->query($insertSql) == true) {
       echo "<script>alert('User successfully registered!')</script>";
       echo "<script>setTimeout(\"location.href = 'login.php';\",1000);</script>";
     } else {
-      echo "<script>alert('Error registering user: " . $conn->error . "')</script>";
+      echo "<script>alert('Error registering user: " . $con->error . "')</script>";
     }
 }
 ?>
