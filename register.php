@@ -155,7 +155,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
         } else {
           $em = "You can't upload files of this type";
-
         }
     }
   } else {
