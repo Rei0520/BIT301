@@ -66,7 +66,7 @@ include "database.php";
                         Type:</label>
                     <input type="Radio" id="S1" name="position" value="User" checked>
                     <label for="S1" class="pl-2" style="padding-right:20px">User</label>
-                    <input type="Radio" id="S2" name="position" value="Marchant" >
+                    <input type="Radio" id="S2" name="position" value="Marchant">
                     <label for="S2" class="pl-2">Marchant</label>
                 </div>
                 <div class="form-group form-inline">
