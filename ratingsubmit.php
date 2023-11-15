@@ -1,7 +1,7 @@
 
 
 <?php
-
+session_start();
 $server = "localhost";
 $username = "root";
 $password = "";
@@ -19,17 +19,22 @@ if (!$conn) {
     $rating_value = $_POST['rating_value'];
     $userName = $_POST['userName'];
     $userMessage = $_POST['userMessage'];
+    $product_id=$_SESSION['id'];
+    $username = $_SESSION['username'];
     $now = time();
     
-$sql = "INSERT INTO rating (name, rating, message, datetime)
-VALUES ('$userName', '$rating_value', '$userMessage', '$now')";
 
 
-if (mysqli_query($conn, $sql)) {
-  echo "New Review Added Successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+
+$sql = "INSERT INTO rating (name, rating, message, datetime, id)
+VALUES ('$userName', '$rating_value', '$userMessage', '$now','$product_id')";
+
+mysqli_query($conn, $sql);
+
+
+$sql1 = "UPDATE purchasedb SET Rating = '$rating_value' WHERE id = '$product_id' and CustomerName = '$username' ";
+mysqli_query($conn, $sql1);
+
 
 mysqli_close($conn);
 

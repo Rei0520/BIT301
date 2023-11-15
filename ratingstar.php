@@ -1,3 +1,15 @@
+<?php
+session_start();
+include 'database.php';
+
+$username = $_SESSION['username'];
+$id = $_GET['id'];
+$_SESSION['id']=$id;
+
+$query1 = "SELECT * FROM new_product WHERE id='$id'";
+$result1 = mysqli_query($conn, $query1)
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +63,8 @@
                         <a href="index.php" class="nav-item nav-link ">Home</a>
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
-                        <a href="manageproduct.php" class="nav-item nav-link active">Product</a>
+                        <a href="ratinglist.php" class="nav-item nav-link active" >Review</a>
+                        <a href="manageproduct.php" class="nav-item nav-link">Product</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -98,7 +111,10 @@
     <!-- Header End -->
 
     <div class="jumbotron text-center">
-       <img src="/verification_form/" alt="" height='200' width='200'>
+    <?php 
+                $rows = mysqli_fetch_assoc($result1);
+    ?>
+                <td><img class="w-25" src="uploads_img/<?=$rows['product_pic']?>"></td>
     </div>
 
     <div class="container">

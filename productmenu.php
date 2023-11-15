@@ -21,7 +21,11 @@ $quantity = '';
 
 
 // Formulate query
-$query = "select id, product_name, product_pic, description, price, quantity, username from new_product";
+// $query = "select id, product_name, product_pic, description, price, quantity, username, Rating from new_product JOIN purchasedb using (id) group by id"; 
+$query = "SELECT  PurchaseID,n.id, n.product_name, n.product_pic, n.description, n.price, n.quantity, n.username, AVG(p.Rating) as AvgR
+          FROM new_product n
+          JOIN purchasedb p ON n.id = p.id
+          GROUP BY n.id";
 
 // Execute
 $result = mysqli_query($conn, $query);
@@ -81,7 +85,7 @@ $result = mysqli_query($conn, $query);
                         <a href="index.php" class="nav-item nav-link active">Home</a>
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!--<a href="service.html" class="nav-item nav-link">Services</a>-->
-                        <!--<a href="package.html" class="nav-item nav-link">Tour Packages</a>-->
+                        <a href="ratinglist.php" class="nav-item nav-link">Review</a>
                         <a href="viewAnalyticsAdmin.php" class="nav-item nav-link">Analytics</a>
                         <!--
                         <div class="nav-item dropdown">
@@ -159,6 +163,7 @@ $result = mysqli_query($conn, $query);
                 $count = 0;
                 while ($rows = mysqli_fetch_assoc($result)) {
                     $count++;
+                    $_SESSION['id']=$rows['id'];
                 
     ?>
                 <tr>
@@ -169,7 +174,8 @@ $result = mysqli_query($conn, $query);
                 <td><?php echo $rows['price']; ?></td>
                 <td><?php echo $rows['quantity']; $quantity=$rows['quantity'];?></td>
                 <td><?php echo $rows['username'];?></td>
-                <td><?php echo $rows['']; ?></td>
+                <td><?php echo $rows['AvgR'];?></td>
+                <!-- <td><span id="avg_rating">0.0</span>/5.0</td> -->
                 <td><a class="delete btn btn-primary" href="purchasingform.php?id=<?php echo $rows['id']; ?>">Buy Now</a></td>
                 </tr>
 	<?php
@@ -283,7 +289,7 @@ $_SESSION['quantity'] = $quantity;
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="js/datatable.js"></script>
-
+    <script src="js/rating.js"></script>
 </body>
 
 </html>

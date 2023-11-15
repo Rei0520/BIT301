@@ -4,19 +4,7 @@ include 'database.php';
 
 $username = $_SESSION['username'];
 
-if (isset($_GET['id'])) {  
-    $id = $_GET['id'];  
-    $query = "DELETE FROM `new_product` WHERE id = '$id'";  
-    $run = mysqli_query($conn,$query);  
-    if ($run) {  
-         header('location:manageproduct.php');  
-    }else{  
-         echo "Error: ".mysqli_error($conn);  
-    }  
-}  
-
-
-$query = "SELECT * from new_product WHERE username = '$username'";
+$query = "SELECT * FROM purchasedb JOIN new_product USING (id) WHERE Rating IS NULL";
 $result = mysqli_query($conn, $query)
 ?>
 
@@ -72,7 +60,8 @@ $result = mysqli_query($conn, $query)
                         <a href="index.php" class="nav-item nav-link ">Home</a>
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
-                        <a href="manageproduct.php" class="nav-item nav-link active">Product</a>
+                        <a href="ratinglist.php" class="nav-item nav-link active" >Review</a>
+                        <a href="manageproduct.php" class="nav-item nav-link ">Product</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -135,14 +124,13 @@ $result = mysqli_query($conn, $query)
             <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th width="5%">No.</th>
-                        <th width="15%">Product Name</th>
-                        <th width="25%">Description</th>
-                        <th width="10%">Quantity</th>
-                        <th width="10%">Price</th>
-                        <th width="25%">Product Picture</th>
-                        <th width="5%">Edit</th>
-                        <th width="5%">Delete</th>
+                    <th width="20%">Product ID</th>
+                        <th width="20%">Product Name</th>
+                        <th width="20%">Product Image</th>
+                        <th width="20%">Price</th>
+                        <th width="20%">Stock Quantity</th>
+                        <th width="20%">Merchant Name</th>
+                        <th width="20%">Rating</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -151,14 +139,14 @@ $result = mysqli_query($conn, $query)
                 while ($rows = mysqli_fetch_assoc($result)) {
                     $count++;
     ?>
-                <tr> <td><?php echo $count; ?></td>
+                <tr>
+                <td><?php echo $count; ?></td>
                 <td><?php echo $rows['product_name']; ?></td>
-                <td><?php echo substr($rows['description'],0, 40); ?></td>
-                <td><?php echo $rows['quantity']; ?></td>
+                <td><img class="w-100" src="uploads_img/<?=$rows['product_pic']?>"></td>
                 <td><?php echo $rows['price']; ?></td>
-                <td><img class="w-50" src="uploads_img/<?=$rows['product_pic']?>"></td>
-                <td><a class="delete btn btn-primary" href="editmanage.php?id=<?php echo $rows['id']; ?>">Edit</a></td>
-                <td><a class="delete btn btn-danger"  onclick="return confirm('Are you sure you want to delete this?')" href="manageproduct.php?id=<?php echo $rows['id'];?>">Delete</a></td>
+                <td><?php echo $rows['quantity']; $quantity=$rows['quantity'];?></td>
+                <td><?php echo $rows['username'];?></td>
+                <td><a class="delete btn btn-secondary" href="ratingstar.php?id=<?php echo $rows['id']; ?>">Rating</a></td>
                 </tr>
 	<?php
 }
