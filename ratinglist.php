@@ -13,7 +13,7 @@ $result = mysqli_query($conn, $query)
 
 <head>
     <meta charset="utf-8">
-    <title>Manage Product</title>
+    <title>Rating List</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -96,30 +96,23 @@ $result = mysqli_query($conn, $query)
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Product</h3>
+                <h3 class="display-4 text-white text-uppercase">Review</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Manage Product</p>
+                    <p class="m-0 text-uppercase">Rating</p>
                 </div>
             </div>
         </div>
     </div>
     <!-- Header End -->
 
-    <div class="container">
-        <div class="row offset-10 mt-2">
-            <button type="button" class="btn btn-primary" onclick = "window.location.href='addnewproduct.php'">Add New Product</button>
-        </div>
-    </div>
-
-
     <!-- Packages Start -->
     <div class="container-fluid py-5">
         <div class="container pb-3">
             <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Manage Product</h6>
-                <h1>List of Product</h1>
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Review</h6>
+                <h1>List of Rating</h1>
             </div>
             <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
