@@ -73,6 +73,7 @@ $result = mysqli_query($conn, $query)
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
                         <a href="manageproduct.php" class="nav-item nav-link active">Product</a>
+                        <a href="viewAnalytics.php" class="nav-item nav-link ">Analytics</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -120,7 +121,8 @@ $result = mysqli_query($conn, $query)
 
     <div class="container">
         <div class="row offset-10 mt-2">
-            <button type="button" class="btn btn-primary" onclick = "window.location.href='addnewproduct.php'">Add New Product</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='addnewproduct.php'">Add New
+                Product</button>
         </div>
     </div>
 
@@ -146,21 +148,25 @@ $result = mysqli_query($conn, $query)
                     </tr>
                 </thead>
                 <tbody>
-                <?php 
+                    <?php 
                 $count = 0;
                 while ($rows = mysqli_fetch_assoc($result)) {
                     $count++;
     ?>
-                <tr> <td><?php echo $count; ?></td>
-                <td><?php echo $rows['product_name']; ?></td>
-                <td><?php echo substr($rows['description'],0, 40); ?></td>
-                <td><?php echo $rows['quantity']; ?></td>
-                <td><?php echo $rows['price']; ?></td>
-                <td><img class="w-50" src="uploads_img/<?=$rows['product_pic']?>"></td>
-                <td><a class="delete btn btn-primary" href="editmanage.php?id=<?php echo $rows['id']; ?>">Edit</a></td>
-                <td><a class="delete btn btn-danger"  onclick="return confirm('Are you sure you want to delete this?')" href="manageproduct.php?id=<?php echo $rows['id'];?>">Delete</a></td>
-                </tr>
-	<?php
+                    <tr>
+                        <td><?php echo $count; ?></td>
+                        <td><?php echo $rows['product_name']; ?></td>
+                        <td><?php echo substr($rows['description'],0, 40); ?></td>
+                        <td><?php echo $rows['quantity']; ?></td>
+                        <td><?php echo $rows['price']; ?></td>
+                        <td><img class="w-50" src="uploads_img/<?=$rows['product_pic']?>"></td>
+                        <td><a class="delete btn btn-primary"
+                                href="editmanage.php?id=<?php echo $rows['id']; ?>">Edit</a></td>
+                        <td><a class="delete btn btn-danger"
+                                onclick="return confirm('Are you sure you want to delete this?')"
+                                href="manageproduct.php?id=<?php echo $rows['id'];?>">Delete</a></td>
+                    </tr>
+                    <?php
 }
 ?>
                 </tbody>
@@ -171,7 +177,8 @@ $result = mysqli_query($conn, $query)
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+        style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white-50">Copyright &copy; <a href="#">PromoTourism</a>. All Rights Reserved.</a>

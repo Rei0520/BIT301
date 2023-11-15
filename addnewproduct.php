@@ -38,10 +38,10 @@
         <link href="css/style.css" rel="stylesheet">
 
         <style>
-            .btn-secondary {
-            color: #fff!important;
-            background-color: #6c757d!important;
-            border-color: #6c757d!important;
+        .btn-secondary {
+            color: #fff !important;
+            background-color: #6c757d !important;
+            border-color: #6c757d !important;
         }
         </style>
     </head>
@@ -140,7 +140,8 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+        style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white-50">Copyright &copy; <a href="#">PromoTourism</a>. All Rights Reserved.</a>
