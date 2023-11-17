@@ -86,7 +86,6 @@ $result = mysqli_query($conn, $query);
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!--<a href="service.html" class="nav-item nav-link">Services</a>-->
                         <a href="ratinglist.php" class="nav-item nav-link">Review</a>
-                        <a href="viewAnalyticsAdmin.php" class="nav-item nav-link">Analytics</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>

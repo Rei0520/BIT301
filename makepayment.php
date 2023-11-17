@@ -170,7 +170,7 @@ $result = mysqli_query($conn, $query);
                             <img style="width: 45px; height: 30px; margin-left: 180px;" class="radio-img" src="uploads_img/onlinebanking.png" alt="Radio Button Image"><br>
                             <input type="radio" id="radio" name="payment" value="Debit/CreditCard">
                             <label>Debit/Credit Card</label>
-                            <img style="width: 180px; height: 40px; margin-left: 20px;" class="radio-img" src="uploads_img/debit:creditcard.png" alt="Radio Button Image"><br>
+                            <img style="width: 180px; height: 40px; margin-left: 20px;" class="radio-img" src="uploads_img/debit_creditcard.png" alt="Radio Button Image"><br>
                             <input type="radio" id="radio" name="payment" value="TNG ewallet">
                             <label>TNG ewallet</label>
                             <img style="width: 60px; height: 40px; margin-left: 195px;" class="radio-img" src="uploads_img/tngewallet.png" alt="Radio Button Image"><br><br>

@@ -220,8 +220,8 @@ if ($result2) {
 
     <br>
 
-    <a class="delete btn btn-primary" href="index.php?id=<?php echo $rows['UserID']; ?>">Go Back to Home</a>
-    <a class="delete btn btn-success" href="productmenu.php?id=<?php echo $rows['UserID']; ?>">Go Back to Product Menu</a>
+    <a class="delete btn btn-primary" href="index.php">Go Back to Home</a>
+    <a class="delete btn btn-success" href="productmenu.php">Go Back to Product Menu</a>
 </div>
 </div>
 
