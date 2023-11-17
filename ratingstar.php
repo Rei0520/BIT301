@@ -64,7 +64,7 @@ $result1 = mysqli_query($conn, $query1)
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
                         <a href="ratinglist.php" class="nav-item nav-link active" >Review</a>
-                        <a href="manageproduct.php" class="nav-item nav-link">Product</a>
+                        <a href="productmenu.php" class="nav-item nav-link">Product</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -243,7 +243,7 @@ $result1 = mysqli_query($conn, $query1)
             <i class="fa fa-star star-light submit_star  mr-1 " id='submit_star_5' data-rating='5'></i>
         </h4>
         <div class="form-group">
-            <input type="text" class="form-control" id='userName' name='userName' placeholder="Enter Name">
+            <input type="hidden" class="form-control" id='userName' name='userName' value='<?php echo $username?>' placeholder="Enter Name">
         </div>
         <div class="form-group">
         <textarea name="userMessage" id="userMessage" class="form-control" placeholder="Enter message"></textarea>

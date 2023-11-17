@@ -20,7 +20,6 @@ if (!$conn) {
     $userName = $_POST['userName'];
     $userMessage = $_POST['userMessage'];
     $product_id=$_SESSION['id'];
-    $username = $_SESSION['username'];
     $now = time();
     
 
@@ -32,9 +31,9 @@ VALUES ('$userName', '$rating_value', '$userMessage', '$now','$product_id')";
 mysqli_query($conn, $sql);
 
 
-$sql1 = "UPDATE purchasedb SET Rating = '$rating_value' WHERE id = '$product_id' and CustomerName = '$username' ";
+$sql1 = "UPDATE purchasedb SET Rating = '$rating_value' WHERE id = '$product_id' and Rating is NULL and CustomerName='$userName'";
 mysqli_query($conn, $sql1);
-
+// echo "<script>setTimeout(\"location.href = 'productmenu.php';\",1000);</script>";
 
 mysqli_close($conn);
 
