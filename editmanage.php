@@ -47,17 +47,17 @@
         <!-- Customized Bootstrap Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
         <style>
-            .btn-secondary {
-            color: #fff!important;
-            background-color: #6c757d!important;
-            border-color: #6c757d!important;
+        .btn-secondary {
+            color: #fff !important;
+            background-color: #6c757d !important;
+            border-color: #6c757d !important;
         }
         </style>
     </head>
 
 <body>
-        <!-- Navbar Start -->
-        <div class="container-fluid position-relative nav-bar" style="padding-top: 1pc;padding-bottom: 15px;">
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar" style="padding-top: 1pc;padding-bottom: 15px;">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
@@ -118,7 +118,7 @@
 
     <!-- form -->
     <div class="container">
-    <?php
+        <?php
 
     while($row=mysqli_fetch_assoc($result)){
         $id=$row['id'];
@@ -132,24 +132,29 @@
             <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id; ?>">
             <div class="form-group">
                 <label for="product_name" class="col-form-label">Product Name:</label>
-                <input type="text" class="form-control" id="update_product_name" name="update_product_name" value="<?php echo $product_name; ?>" required>
+                <input type="text" class="form-control" id="update_product_name" name="update_product_name"
+                    value="<?php echo $product_name; ?>" required>
             </div>
             <div class="form-group">
                 <label for="description" class="col-form-label">Description:</label>
-                <textarea class="form-control" id="update_description" name="update_description"><?php echo $description; ?></textarea>
+                <textarea class="form-control" id="update_description"
+                    name="update_description"><?php echo $description; ?></textarea>
             </div>
             <div class="form-group">
                 <label for="quantity" class="col-form-label">Quantity:</label>
-                <input class="form-control" type="number" id="update_quantity" name="update_quantity" value="<?php echo $quantity; ?>" required>
+                <input class="form-control" type="number" id="update_quantity" name="update_quantity"
+                    value="<?php echo $quantity; ?>" required>
             </div>
             <div class="form-group">
                 <label for="quantity" class="col-form-label">Price:</label>
-                <input class="form-control" type="number" id="update_price" name="update_price" value="<?php echo $price; ?>" required>
+                <input class="form-control" type="number" id="update_price" name="update_price"
+                    value="<?php echo $price; ?>" required>
             </div>
             <div class="form-group">
                 <label for="product_pic" class="col-form-label">Product Image:</label>
                 <input type="file" class="form-control" id="update_product_pic" name="update_product_pic">
-                <input type="hidden" class="form-control" id="old_product_pic" name="old_product_pic" value="<?php echo $product_pic; ?>">
+                <input type="hidden" class="form-control" id="old_product_pic" name="old_product_pic"
+                    value="<?php echo $product_pic; ?>">
             </div>
             <img src="<?php echo "uploads_img/".$product_pic;?> " class="img-thumbnail w-25" alt="">
             <div class="offset-10">
@@ -165,7 +170,8 @@
 
             ?>
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+        style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-12 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white-50">Copyright &copy; <a href="#">PromoTourism</a>. All Rights Reserved.</a>
