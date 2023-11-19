@@ -18,7 +18,7 @@ $username = $_SESSION['username'];
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
@@ -29,6 +29,13 @@ $username = $_SESSION['username'];
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+    body {
+        background-image: url('img/tourismBackground.jpg');
+        background-repeat: no-repeat;
+    }
+    </style>
 </head>
 
 <body>
@@ -45,19 +52,22 @@ $username = $_SESSION['username'];
         </div>
     </div>
 
-    <div class="row align-items-center" style ="padding-top: 10%;">
+    <div class="row align-items-center" style="padding-top: 10%;">
         <div class="col-3"></div>
         <div class="col-6 bg-white rounded" style="padding: 30px 30px 30px 30px;">
             <form method="POST" id="changePass" action="changePass.php">
                 <div class="form-group">
                     <label for="oldPass">Old Password:</label>
-                    <input type="password" class="form-control sizing" id="oldPass" name="oldPass" placeholder="Enter Old Password" required>
+                    <input type="password" class="form-control sizing" id="oldPass" name="oldPass"
+                        placeholder="Enter Old Password" required>
                 </div>
                 <div class="form-group">
                     <label for="newPass">New Password:</label>
-                    <input type="password" class="form-control sizing" id="newPass" name="newPass" placeholder="Enter New Password" required>
+                    <input type="password" class="form-control sizing" id="newPass" name="newPass"
+                        placeholder="Enter New Password" required>
                 </div>
-                <button type="submit" class="btn btn-primary" name="submit" style="margin-left: 25%; width: 50%;border-radius: 4px;">Submit</button>
+                <button type="submit" class="btn btn-primary" name="submit"
+                    style="margin-left: 25%; width: 50%;border-radius: 4px;">Submit</button>
             </form>
         </div>
     </div>

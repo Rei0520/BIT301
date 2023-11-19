@@ -2,40 +2,32 @@
 session_start();
 include 'database.php';
 
-$username = $_SESSION['username'];
+$id = $_SESSION['id'];
+if (isset($_GET['id'])) {  
+    $id = $_GET['id'];
 
-if (isset($_GET['UserID'])) {  
-    $userid = $_GET['UserID'];  
-    $query = "DELETE FROM `userdb` WHERE UserID = '$userid'";  
-    $run = mysqli_query($conn,$query);  
-    if ($run) {  
-         header('location:accountmanagement.php');  
-    }else{  
-         echo "Error: ".mysqli_error($conn);  
-    }  
 }  
 
-$username = $_SESSION['username'];
+$_SESSION['id'] = $id;
 
 
 // Formulate query
-$query = "select UserID, UserName, ContactNum, Email, Status from userdb where position='Marchant' and status='Pending'";
+$query = "select id, product_name, product_pic, description, price, quantity, username from new_product";
 
 // Execute
-$result = mysqli_query($conn, $query)
+$result = mysqli_query($conn, $query);
 
 
 
 
 ?>
 
-
 <!DOCTYPE html>
-
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Account Management</title>
+    <title>Product Menu</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -46,6 +38,7 @@ $result = mysqli_query($conn, $query)
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -84,8 +77,6 @@ $result = mysqli_query($conn, $query)
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!--<a href="service.html" class="nav-item nav-link">Services</a>-->
                         <!--<a href="package.html" class="nav-item nav-link">Tour Packages</a>-->
-                        <a href="viewAnalyticsAdmin.php" class="nav-item nav-link">Analytics</a>
-
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -120,11 +111,13 @@ $result = mysqli_query($conn, $query)
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Administrator</h3>
+                <h3 class="display-4 text-white text-uppercase">Tourism Product</h3>
                 <div class="d-inline-flex text-white">
-                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <p class="m-0 text-uppercase"><a class="text-white">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Account Management</p>
+                    <p class="m-0 text-uppercase">Product Menu</p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Purchasing Form</p>
                 </div>
             </div>
         </div>
@@ -136,43 +129,44 @@ $result = mysqli_query($conn, $query)
     <!-- Packages Start -->
     <div class="container-fluid py-5">
         <div class="container pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Account Management</h6>
-                <h1>List of Pending Application</h1>
-            </div>
 
-            <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
-                <thead>
-                    <tr>
-                        <th width="20%">User ID</th>
-                        <th width="20%">User Name</th>
-                        <th width="20%">Contact No.</th>
-                        <th width="20%">Email</th>
-                        <th width="20%">Status</th>
-                        <th width="20%"> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php 
-                   
-                
-                $count = 0;
-                while ($rows = mysqli_fetch_assoc($result)) {
-                    $count++;
-    ?>
-                <tr>
-                <td><?php echo $rows['UserID']; ?></td>
-                <td><?php echo $rows['UserName']; ?></td>
-                <td><?php echo $rows['ContactNum']; ?></td>
-                <td><?php echo $rows['Email']; ?></td>
-                <td><?php echo $rows['Status']; ?></td>
-                <td><a class="delete btn btn-primary" href="reviewmerchant.php?id=<?php echo $rows['UserID']; ?>">Review</a></td>
-                </tr>
-	<?php
-}
-?>
-                </tbody>
-            </table>
+        <div class="d-flex justify-content-center">
+    <form method="POST" action="makepayment.php" class="form-">
+        <div class="text-center mb-4">
+            <h1 class="mb-3 font-weight-bold">Purchase Form</h1><br>
+
+            <div class="form-label-group" style="text-align: left;">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" required>    
+            </div>
+          <br>
+          <div class="form-label-group" style="text-align: left;">
+				<label for="contactnum">Contact No.</label>
+				<input type="text" name="contactnum" id="contactnum" class="form-control" placeholder="Enter Contact No." required>
+          </div>
+			<br>
+            <div class="form-label-group" style="text-align: left;">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email" class="form-control" placeholder="Enter Email Address" required>
+            </div>
+			<br>
+            <div class="form-label-group" style="text-align: left;">
+				<label for="date">Date</label>
+				<input type="date" name="date" id="date" class="form-control" required> 
+            </div>
+			<br>
+            <div class="form-label-group" style="text-align: left;">
+				<label for="Quantity">Quantity</label>
+				<input type="text" name="Quantity" id="Qunatity" class="form-control" placeholder="Enter Quantity" required> 
+            </div>
+			<br>
+			
+            <div class="form-label-group">
+				<input type="submit" name="submit" class="btn btn-outline-secondary btn-lg">
+            </div>
+          </form>
+
+                        </div>
         </div>
     </div>
     <!-- Packages End -->

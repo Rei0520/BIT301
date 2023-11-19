@@ -16,26 +16,28 @@ if (isset($_GET['UserID'])) {
 }  
 
 $username = $_SESSION['username'];
+$quantity = '';
+
 
 
 // Formulate query
-$query = "select UserID, UserName, ContactNum, Email, Status from userdb where position='Marchant' and status='Pending'";
+// $query = "select id, product_name, product_pic, description, price, quantity, username, Rating from new_product JOIN purchasedb using (id) group by id"; 
+$query = "SELECT  PurchaseID,n.id, n.product_name, n.product_pic, n.description, n.price, n.quantity, n.username, AVG(p.Rating) as AvgR
+          FROM new_product n
+          JOIN purchasedb p ON n.id = p.id
+          GROUP BY n.id";
 
 // Execute
-$result = mysqli_query($conn, $query)
-
-
-
+$result = mysqli_query($conn, $query);
 
 ?>
 
-
 <!DOCTYPE html>
-
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Account Management</title>
+    <title>Product Menu</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -83,9 +85,7 @@ $result = mysqli_query($conn, $query)
                         <a href="index.php" class="nav-item nav-link active">Home</a>
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
                         <!--<a href="service.html" class="nav-item nav-link">Services</a>-->
-                        <!--<a href="package.html" class="nav-item nav-link">Tour Packages</a>-->
-                        <a href="viewAnalyticsAdmin.php" class="nav-item nav-link">Analytics</a>
-
+                        <a href="ratinglist.php" class="nav-item nav-link">Review</a>
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -120,11 +120,11 @@ $result = mysqli_query($conn, $query)
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Administrator</h3>
+                <h3 class="display-4 text-white text-uppercase">Tourism Product</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Account Management</p>
+                    <p class="m-0 text-uppercase">Product Menu</p>
                 </div>
             </div>
         </div>
@@ -137,18 +137,21 @@ $result = mysqli_query($conn, $query)
     <div class="container-fluid py-5">
         <div class="container pb-3">
             <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Account Management</h6>
-                <h1>List of Pending Application</h1>
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Product Menu</h6>
+                <h1>List of Tourism Product</h1>
             </div>
 
             <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th width="20%">User ID</th>
-                        <th width="20%">User Name</th>
-                        <th width="20%">Contact No.</th>
-                        <th width="20%">Email</th>
-                        <th width="20%">Status</th>
+                        <th width="20%">Product ID</th>
+                        <th width="20%">Product Name</th>
+                        <th width="20%">Product Image</th>
+                        <th width="20%">Description</th>
+                        <th width="20%">Price</th>
+                        <th width="20%">Stock Quantity</th>
+                        <th width="20%">Merchant Name</th>
+                        <th width="20%">Rating</th>
                         <th width="20%"> </th>
                     </tr>
                 </thead>
@@ -159,17 +162,26 @@ $result = mysqli_query($conn, $query)
                 $count = 0;
                 while ($rows = mysqli_fetch_assoc($result)) {
                     $count++;
+                    $_SESSION['id']=$rows['id'];
+                
     ?>
                 <tr>
-                <td><?php echo $rows['UserID']; ?></td>
-                <td><?php echo $rows['UserName']; ?></td>
-                <td><?php echo $rows['ContactNum']; ?></td>
-                <td><?php echo $rows['Email']; ?></td>
-                <td><?php echo $rows['Status']; ?></td>
-                <td><a class="delete btn btn-primary" href="reviewmerchant.php?id=<?php echo $rows['UserID']; ?>">Review</a></td>
+                <td><?php echo $rows['id']; ?></td>
+                <td><?php echo $rows['product_name']; ?></td>
+                <td><img class="w-100" src="uploads_img/<?=$rows['product_pic']?>"></td>
+                <td><?php echo $rows['description']; ?></td>
+                <td><?php echo $rows['price']; ?></td>
+                <td><?php echo $rows['quantity']; $quantity=$rows['quantity'];?></td>
+                <td><?php echo $rows['username'];?></td>
+                <td><?php echo $rows['AvgR'];?></td>
+                <!-- <td><span id="avg_rating">0.0</span>/5.0</td> -->
+                <td><a class="delete btn btn-primary" href="purchasingform.php?id=<?php echo $rows['id']; ?>">Buy Now</a></td>
                 </tr>
 	<?php
 }
+
+$_SESSION['quantity'] = $quantity;
+
 ?>
                 </tbody>
             </table>
@@ -276,7 +288,7 @@ $result = mysqli_query($conn, $query)
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="js/datatable.js"></script>
-
+    <script src="js/rating.js"></script>
 </body>
 
 </html>

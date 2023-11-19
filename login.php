@@ -117,7 +117,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
             } else {
                 echo"<script>alert('Welcome back $Username!')</script>";
-                echo "<script>setTimeout(\"location.href = 'index.php';\",1000);</script>";
+                echo "<script>setTimeout(\"location.href = 'productmenu.php';\",1000);</script>";
             }
         } else {
             echo "<script>alert('Wrong password for this Employee ID!')</script>";
