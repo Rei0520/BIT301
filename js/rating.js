@@ -117,7 +117,7 @@ console.log(count)
                                 html += `</div>`;
                                 html += `<div class='card-body'>`;
                                     for(var star = 0; star<5; star++){
-                                        if(parsedData.ratingsList[count].rating >= star){
+                                        if(parsedData.ratingsList[count].rating > star){
                                             className = 'text-warning'
                                         }else{
                                             className = 'star-light'

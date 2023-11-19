@@ -121,7 +121,7 @@ $result = mysqli_query($conn, $query)
                         <th width="20%">Product Name</th>
                         <th width="20%">Product Image</th>
                         <th width="20%">Price</th>
-                        <th width="20%">Stock Quantity</th>
+                        <!-- <th width="20%">Stock Quantity</th> -->
                         <th width="20%">Merchant Name</th>
                         <th width="20%">Rating</th>
                     </tr>
@@ -137,7 +137,7 @@ $result = mysqli_query($conn, $query)
                 <td><?php echo $rows['product_name']; ?></td>
                 <td><img class="w-100" src="uploads_img/<?=$rows['product_pic']?>"></td>
                 <td><?php echo $rows['price']; ?></td>
-                <td><?php echo $rows['quantity']; $quantity=$rows['quantity'];?></td>
+                <!-- <td><?php echo $rows['quantity']; $quantity=$rows['quantity'];?></td> -->
                 <td><?php echo $rows['username'];?></td>
                 <td><a class="delete btn btn-secondary" href="ratingstar.php?id=<?php echo $rows['id']; ?>">Rating</a></td>
                 </tr>
