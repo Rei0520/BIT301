@@ -8,7 +8,6 @@
             $product_name = $_POST['product_name'];
             $description = $_POST['description'];
             $quantity = $_POST['quantity'];
-            $price = $_POST['price'];
             $img_name = $_FILES['product_pic']['name'];
             $img_size = $_FILES['product_pic']['size'];
             $tmp_name = $_FILES['product_pic']['tmp_name'];
@@ -30,13 +29,10 @@
                         $img_upload_path = 'uploads_img/' . $new_img_name;
                         move_uploaded_file($tmp_name, $img_upload_path);
     
-                        $sql = "INSERT INTO new_product (product_name, description, quantity, product_pic, price,username) VALUES ('$product_name', '$description', '$quantity', '$new_img_name','$price','$username')";
-                        if ($conn->query($sql) == true) {
-                            echo "<script>alert('New Product successful saved!')</script>";
-                            echo "<script>setTimeout(\"location.href = 'manageproduct.php';\",1000);</script>";
-                          } else {
-                            echo "<script>alert('Error add new product: " . $conn->error . "')</script>";
-                          }
+                        $sql = "INSERT INTO new_product (product_name, description, quantity, product_pic,username) VALUES ('$product_name', '$description', $quantity, '$new_img_name','$username')";
+                        mysqli_query($conn, $sql);
+
+                        header("Location: manageproduct.php");
                     } else {
                         $em = "You can't upload files of this type";
                         header("Location: addnewproduct.php?error=$em");

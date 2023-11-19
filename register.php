@@ -169,7 +169,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
   } else if ($conn->query($checkEmailSql)->num_rows > 0) {
     echo "<script>alert('Email already exists!')</script>";
     return;
-  } else if ($Position == "Marchant"){
+  } else if ($_SESSION['position'] == "Marchant"){
     $Password = "123";
     $insertSql = "INSERT INTO userdb (`UserID`, `Username`, `Password`, `ContactNum`, `Email`, `CompDe`, `Document`,`Status`,`Position`)
         VALUES ('','$Username', '$Password','$ContactNum', '$Email', '$CompDe', '$new_img_name','$Status','$Position')";

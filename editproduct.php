@@ -7,7 +7,6 @@
             $update_product_name = $_POST['update_product_name'];
             $update_description = $_POST['update_description'];
             $update_quantity = $_POST['update_quantity'];
-            $update_price = $_POST['update_price'];
             $new_image = $_FILES['update_product_pic'];
             $old_image = $_POST['old_product_pic'];
 
@@ -28,7 +27,7 @@
             else
             {
                 $sql = "UPDATE new_product 
-                SET product_name = '$update_product_name', description = '$update_description', quantity = $update_quantity, product_pic = '$update_filename', price='$update_price'
+                SET product_name = '$update_product_name', description = '$update_description', quantity = $update_quantity, product_pic = '$update_filename' 
                 WHERE id = '$id'";
                 $query_run= mysqli_query($conn, $sql);
                 if($query_run)
