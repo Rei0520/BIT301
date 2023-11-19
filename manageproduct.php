@@ -72,14 +72,9 @@ $result = mysqli_query($conn, $query)
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.php" class="nav-item nav-link active">Home</a>
                         <!--<a href="about.html" class="nav-item nav-link">About</a>-->
-<<<<<<< Updated upstream
                         <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
                         <a href="manageproduct.php" class="nav-item nav-link active">Product</a>
                         <a href="viewAnalytics.php" class="nav-item nav-link ">Analytics</a>
-=======
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="package.html" class="nav-item nav-link">Tour Packages</a>
->>>>>>> Stashed changes
                         <!--
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -147,6 +142,7 @@ $result = mysqli_query($conn, $query)
                         <th width="15%">Product Name</th>
                         <th width="30%">Description</th>
                         <th width="10%">Quantity</th>
+                        <th width="10%">Price</th>
                         <th width="30%">Product Picture</th>
                         <th width="5%">Edit</th>
                         <th width="5%">Delete</th>
@@ -158,7 +154,6 @@ $result = mysqli_query($conn, $query)
                 while ($rows = mysqli_fetch_assoc($result)) {
                     $count++;
     ?>
-<<<<<<< Updated upstream
                     <tr>
                         <td><?php echo $count; ?></td>
                         <td><?php echo $rows['product_name']; ?></td>
@@ -173,17 +168,6 @@ $result = mysqli_query($conn, $query)
                                 href="manageproduct.php?id=<?php echo $rows['id'];?>">Delete</a></td>
                     </tr>
                     <?php
-=======
-                <tr> <td><?php echo $count; ?></td>
-                <td><?php echo $rows['product_name']; ?></td>
-                <td><?php echo $rows['description']; ?></td>
-                <td><?php echo $rows['quantity']; ?></td>
-                <td><img class="w-50" src="uploads_img/<?=$rows['product_pic']?>"></td>
-                <td><a class="delete btn btn-primary" href="editmanage.php?id=<?php echo $rows['id']; ?>">Edit</a></td>
-                <td><a class="delete btn btn-danger"  onclick="return confirm('Are you sure you want to delete this?')" href="manageproduct.php?id=<?php echo $rows['id'];?>">Delete</a></td>
-                </tr>
-	<?php
->>>>>>> Stashed changes
 }
 ?>
                 </tbody>
